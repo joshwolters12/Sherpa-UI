@@ -7,7 +7,7 @@ import Save from '../components/Save';
 
 const exec = require('child_process').exec
 const fs = require('fs-extra');
-var data = require('../starterReactVR/myjsonfile.json');
+var data = require('../reactVR/myjsonfile.json');
 const dialog = require('electron').remote.dialog;
 const {BrowserWindow} = require('electron').remote
 
@@ -33,7 +33,7 @@ export default class Main extends Component {
         currView: page
       },()=>{resolve()});
     }).then(()=>{
-      fs.writeFile('./starterReactVR/myjsonfile.json', JSON.stringify(this.state), 'utf8', () => {
+      fs.writeFile('./reactVR/myjsonfile.json', JSON.stringify(this.state), 'utf8', () => {
         console.log('Writing Changes to File')
       });
     }).then(()=>{
@@ -64,7 +64,7 @@ export default class Main extends Component {
   }
 
   writeToFile() {
-    fs.writeFile('./starterReactVR/myjsonfile.json', JSON.stringify(this.state), 'utf8', () => {
+    fs.writeFile('./reactVR/myjsonfile.json', JSON.stringify(this.state), 'utf8', () => {
       console.log('Writing Changes to File')
     });
     this.setState({
@@ -92,10 +92,10 @@ export default class Main extends Component {
         let pathLength = filePath[0].split("/").length;
         let pathMatch = filePath[0].split("/").slice(pathLength - 3, pathLength).join("/");
 
-        if (pathMatch !== 'starterReactVR/static_assets/' + imageToLoad) {
+        if (pathMatch !== 'reactVR/static_assets/' + imageToLoad) {
           console.log('filePath', filePath)
-          console.log('saveURI', 'starterReactVR/static_assets/' + imageToLoad)
-          fs.copy(filePath.toString(), 'starterReactVR/static_assets/' + imageToLoad, function(err) {
+          console.log('saveURI', 'reactVR/static_assets/' + imageToLoad)
+          fs.copy(filePath.toString(), 'reactVR/static_assets/' + imageToLoad, function(err) {
             if (err) return console.log(err)
             resolve(imageToLoad)
           })
@@ -118,7 +118,7 @@ export default class Main extends Component {
           <Open/>
           <Save/>
           <div style={styles.logo}>
-            <img src="./starterReactVR/static_assets/sherpa.png" />
+            <img src="./reactVR/static_assets/sherpa.png" />
           </div>
           <Publish
       publish = {this.publish}

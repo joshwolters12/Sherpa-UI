@@ -15,7 +15,7 @@ class Image extends Component {
                 height: '10%',
                 width: '95%',
                 // backgroundColor: (this.props.page === this.props.currView) ? '#707f9c' : '#1e2538',
-                backgroundImage: `url("./starterReactVR/static_assets/${this.props.imageURL}")`,
+                backgroundImage: `url("./reactVR/static_assets/${this.props.imageURL}")`,
                 backgroundSize: 'cover',
                 margin: 'auto',
                 borderRadius: '2px',

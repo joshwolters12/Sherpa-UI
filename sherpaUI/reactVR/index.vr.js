@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image } from 'react-vr';
-import TextFrame from './text-frame.vr.js';
-import TitleFrame from './title-frame.vr.js';
-import JumpButton from './jump-button.vr.js';
+import TextFrame from './components/text-frame.vr.js';
+import TitleFrame from './components/title-frame.vr.js';
+import JumpButton from './components/jump-button.vr.js';
 
 const data = require('./obj.json');
 
 
-export default class starterReactVR extends Component {
+export default class reactVR extends Component {
   constructor() {
     super();
     this.state = data;
@@ -128,4 +128,4 @@ export default class starterReactVR extends Component {
   }
 }
 
-AppRegistry.registerComponent('starterReactVR', () => starterReactVR);
+AppRegistry.registerComponent('reactVR', () => reactVR);
