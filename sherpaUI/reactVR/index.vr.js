@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image } from 'react-vr';
+import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image, Animated } from 'react-vr';
 import TextFrame from './components/text-frame.vr.js';
 import TitleFrame from './components/title-frame.vr.js';
 import JumpButton from './components/jump-button.vr.js';
@@ -51,7 +51,7 @@ export default class reactVR extends Component {
   }
 
   navigateY(frameDeg, direction) {
-    let rotationY = VrHeadModel.yawPitchRoll()[1];
+    let rotationY = VrHeadModel.rotation()[1];
     while(rotationY >= 360) rotationY-=360;
     while(rotationY < 0) rotationY+=360;
     let goTo = frameDeg + direction*90;
@@ -62,12 +62,18 @@ export default class reactVR extends Component {
     while(updateSceneRotateY >= 360) updateSceneRotateY-=360;
     while(updateSceneRotateY < 0) updateSceneRotateY+=360;
     this.setState({sceneRotateY: updateSceneRotateY});
+
+
+    // let updateSceneRotateY = frameDeg+90;
+    // this.setState({sceneRotateY: updateSceneRotateY});
   }
 
   componentDidMount(){
-    console.log('component did mount');
-    console.log('current rotation: ', VrHeadModel.rotation());
-    console.log('current yawPitchRoll: ', VrHeadModel.yawPitchRoll());
+    VrHeadModel.rotation();
+    VrHeadModel.yawPitchRoll();
+    Animated.timing(
+      this.state.slideValue,
+    )
   }
 
   render() {
@@ -117,13 +123,13 @@ export default class reactVR extends Component {
     {/*build four frames*/}
   
     return (
-      <Scene style={{ transform: [{rotateY: this.state.sceneRotateY}] }}>
+      <View style={{ transform: [{rotateY: this.state.sceneRotateY}] }}>
           <Pano source={asset(this.state.scenes[this.state.currScene].imageURL)}></Pano>
 
           {jumpButtons}
           {frames}
 
-      </Scene>
+      </View>
     )
   }
 }
