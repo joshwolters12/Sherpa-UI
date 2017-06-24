@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 class Canvas extends Component {
-
+    componentDidMount(){
+        
+    }
     render() {
-        console.log('rerendering canvas')
         return (
             <div style={styles.canvas}>
                 <iframe

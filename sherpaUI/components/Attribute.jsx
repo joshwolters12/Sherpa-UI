@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { TextInput } from 'react-desktop/macOs';
 
 class Attribute extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             backgroundColor: '#bdc2d8',
             color: '#1e2538',
         }
+        this.currFrameData = this.props.data.scenes[this.props.data.currScene].frames[this.props.data.currFrame];
     }
 
     render() {
@@ -23,6 +24,7 @@ class Attribute extends Component {
             margin: '0 auto',
             fontSize:'12px'
         }
+
         return (
             <div style={styles.attributeContainer}>
                 Title
@@ -32,7 +34,7 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="title"
-                        value={this.props.data[this.props.data.currView].title}
+                        value={this.currFrameData.title}
                         onChange={this.props.updateProperties}/>
                 </form>
                 Paragraph
@@ -42,7 +44,7 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="text"
-                        value={this.props.data[this.props.data.currView].text}
+                        value={this.currFrameData.text}
                         onChange={this.props.updateProperties}/>
                 </form>
                 Navigation
@@ -53,7 +55,7 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="navleft"
-                        value={this.props.data[this.props.data.currView].navleft}
+                        value={this.currFrameData.navleft}
                         onChange={this.props.updateProperties}/>
                 </form>
                 <form style={styles.form}>
@@ -62,7 +64,7 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="navright"
-                        value={this.props.data[this.props.data.currView].navright}
+                        value={this.currFrameData.navright}
                         onChange={this.props.updateProperties}/>
                 </form>
                 <div style={{ display: 'flex', alignItems: 'center' }}>

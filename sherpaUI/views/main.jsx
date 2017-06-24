@@ -7,15 +7,18 @@ import Save from '../components/Save';
 
 const exec = require('child_process').exec
 const fs = require('fs-extra');
-var data = require('../reactVR/myjsonfile.json');
+var data = require('../reactVR/obj.json');
+data.loadURL = data.loadURL + Date.now()
 const dialog = require('electron').remote.dialog;
-const {BrowserWindow} = require('electron').remote
+const { BrowserWindow } = require('electron').remote
 
 
 export default class Main extends Component {
   constructor() {
     super();
     this.state = data;
+
+    //bound functions
     this.selectPage = this.selectPage.bind(this)
     this.updateProperties = this.updateProperties.bind(this)
     this.writeToFile = this.writeToFile.bind(this)
@@ -28,43 +31,44 @@ export default class Main extends Component {
 
   selectPage(page) {
     let _this = this;
-    new Promise((resolve,reject)=>{
+    new Promise((resolve, reject) => {
       this.setState({
-        currView: page
-      },()=>{resolve()});
-    }).then(()=>{
-      fs.writeFile('./reactVR/myjsonfile.json', JSON.stringify(this.state), 'utf8', () => {
+        currFrame: page
+      }, () => { resolve() });
+    }).then(() => {
+      fs.writeFile('./obj.json', JSON.stringify(this.state), 'utf8', () => {
         console.log('Writing Changes to File')
       });
-    }).then(()=>{
+    }).then(() => {
       _this.setState({
         loadURL: _this.state.loadURL + Date.now()
       });
     })
   }
 
-  openWindow(){
-    let win = new BrowserWindow({width: 800, height: 600})
-      win.on('closed', () => {
+  openWindow() {
+    let win = new BrowserWindow({ width: 800, height: 600 })
+    win.on('closed', () => {
       win = null
     })
     win.loadURL(this.state.loadURL)
   }
 
-  updateName(event){
+  updateName(event) {
     let newState = this.state
     newState[event.target.name] = event.target.value;
     this.setState(newState)
   }
 
   updateProperties(event) {
-    let newState = this.state
-    newState[this.state.currView][event.target.name] = event.target.value;
-    this.setState(newState)
+    let newState = this.state;
+    newState.scenes[this.state.currScene].frames[this.state.currFrame][event.target.name] = event.target.value;
+    this.setState(newState);
+    this.writeToFile();
   }
 
   writeToFile() {
-    fs.writeFile('./reactVR/myjsonfile.json', JSON.stringify(this.state), 'utf8', () => {
+    fs.writeFile('./reactVR/obj.json', JSON.stringify(this.state, null, 2), 'utf8', () => {
       console.log('Writing Changes to File')
     });
     this.setState({
@@ -86,7 +90,7 @@ export default class Main extends Component {
             extensions: ['jpg', 'png', 'gif']
           }
         ]
-      }, function(filePath) {
+      }, function (filePath) {
         if (filePath === undefined) return;
         let imageToLoad = filePath[0].split("/").pop();
         let pathLength = filePath[0].split("/").length;
@@ -95,7 +99,7 @@ export default class Main extends Component {
         if (pathMatch !== 'reactVR/static_assets/' + imageToLoad) {
           console.log('filePath', filePath)
           console.log('saveURI', 'reactVR/static_assets/' + imageToLoad)
-          fs.copy(filePath.toString(), 'reactVR/static_assets/' + imageToLoad, function(err) {
+          fs.copy(filePath.toString(), 'reactVR/static_assets/' + imageToLoad, function (err) {
             if (err) return console.log(err)
             resolve(imageToLoad)
           })
@@ -115,14 +119,14 @@ export default class Main extends Component {
     return (
       <div id='appcontainer' style={styles.appcontainer} >
         <div id="headspacer" style={styles.header}>
-          <Open/>
-          <Save/>
+          <Open />
+          <Save />
           <div style={styles.logo}>
             <img src="./reactVR/static_assets/sherpa.png" />
           </div>
           <Publish
-      publish = {this.publish}
-      />
+            publish={this.publish}
+          />
         </div>
         <Gui
           data={this.state}
@@ -130,14 +134,14 @@ export default class Main extends Component {
           updateProperties={this.updateProperties}
           writeToFile={this.writeToFile}
           loadURL={this.state.loadURL}
-          imageURL={this.state.imageURL}
+          imageURL={this.state.scenes[this.state.currScene].imageURL}
           chooseImage={this.chooseImage}
           openWindow={this.openWindow}
           updateName={this.updateName}
-      ></Gui>
+        ></Gui>
         <div id="footer" style={styles.footer}></div>
       </div >
-      );
+    );
   }
 }
 

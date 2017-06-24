@@ -3,7 +3,7 @@ const BrowserWindow = require('electron').BrowserWindow;
 const dialog = require('electron').dialog;
 const Menu = require('electron').Menu;
 const shell = require('electron').shell;
-const exec = require('child_process').exec;
+const childProcess = require('child_process');
 const fs = require('fs-extra');
 const defaultMenu = require('electron-default-menu');
 
@@ -16,8 +16,8 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
+  //menu
   const menu = defaultMenu(app, shell);
-
   menu.splice(4, 0, {
     label: 'Custom',
     submenu: [
@@ -37,15 +37,13 @@ app.on('ready', () => {
     ]
   })
 
-  exec('node reactVR/node_modules/react-native/local-cli/cli.js start')
+  childProcess.exec('node reactVR/node_modules/react-native/local-cli/cli.js start')
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800
   });
 
-  setTimeout(function() {
-    mainWindow.loadURL('file://' + __dirname + '/index.html');
-  }, 500)
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
 
