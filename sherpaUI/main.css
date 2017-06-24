@@ -16,3 +16,12 @@ body{
 .view:hover{
     background-color: yellow;
 }
+
+.indicator{
+    position: absolute;
+    width: 80px;
+    height:30px;
+    top: 50%;
+    left: 45%;
+    pointer-events: none;
+}

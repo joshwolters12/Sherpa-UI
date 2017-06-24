@@ -6,6 +6,7 @@ const shell = require('electron').shell;
 const childProcess = require('child_process');
 const fs = require('fs-extra');
 const defaultMenu = require('electron-default-menu');
+const {webContents} = require('electron')
 
 let mainWindow = null;
 
@@ -18,36 +19,36 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   //menu
   const menu = defaultMenu(app, shell);
-  menu.splice(4, 0, {
-    label: 'Custom',
-    submenu: [
-      {
-        label: 'Export Project to Desktop',
-        click: (item, focusedWindow) => {
-          dialog.showMessageBox({
-            type: "question",
-            message: 'Export to Desktop?',
-            buttons: ['OK']
-          }, function() {
-            exec("cd reactVR && npm run bundle")
-            console.log('exporting to desktop')
-          })
-        }
+menu.splice(4, 0, {
+  label: 'Custom',
+  submenu: [
+    {
+      label: 'Export Project to Desktop',
+      click: (item, focusedWindow) => {
+        dialog.showMessageBox({
+          type: "question",
+          message: 'Export to Desktop?',
+          buttons: ['OK']
+        }, function () {
+          exec("cd reactVR && npm run bundle")
+          console.log('exporting to desktop')
+        })
       }
-    ]
-  })
+    }
+  ]
+})
 
-  childProcess.exec('node reactVR/node_modules/react-native/local-cli/cli.js start')
-  mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800
-  });
+childProcess.exec('node reactVR/node_modules/react-native/local-cli/cli.js start')
+mainWindow = new BrowserWindow({
+  width: 1200,
+  height: 800
+});
 
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
+Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
 
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+mainWindow.on('closed', () => {
+  mainWindow = null;
+});
 });

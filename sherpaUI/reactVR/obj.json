@@ -2,10 +2,10 @@
   "projectName": "myProject",
   "currScene": "chess world",
   "currFrame": "front",
-  "loadURL": "http://localhost:8081/vr/?1498332767372",
+  "loadURL": "http://localhost:8081/vr/?1498343027725",
   "scenes": {
     "chess world": {
-      "imageURL": "chess-world.jpg",
+      "imageURL": "island-garden.jpg",
       "frames": {
         "front": {
           "template": "TitleFrame",
@@ -23,7 +23,7 @@
         },
         "back": {
           "template": "TextFrame",
-          "title": "Hello World",
+          "title": "Hello World update all the time?!h",
           "text": "BACK BACK BACK",
           "navleft": "left",
           "navright": "right"

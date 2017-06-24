@@ -13,13 +13,13 @@ class Page extends Component {
             page: {
                 height: '21%',
                 width: '95%',
-                backgroundColor: (this.props.page === this.props.currView) ? '#707f9c' : '#1e2538',
+                backgroundColor: (this.props.page === this.props.currFrame) ? '#707f9c' : '#1e2538',
                 margin: 'auto',
                 borderRadius: '2px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                color: (this.props.page === this.props.currView) ? 'white' : '#707f9c',
+                color: (this.props.page === this.props.currFrame) ? 'white' : '#707f9c',
                 fontSize: '16px',
                 opacity: this.state.opacity,
                 cursor: 'hand'

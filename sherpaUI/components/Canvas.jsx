@@ -7,11 +7,12 @@ class Canvas extends Component {
     render() {
         return (
             <div style={styles.canvas}>
-                <iframe
+                <webview
                     style={styles.iframe}
                     src={this.props.loadURL}
                     >
-                </iframe>
+                </webview>
+                <div className = "indicator">/</div>
                 <div 
                 style={styles.openWindow}
                 onClick={this.props.openWindow}>
@@ -36,7 +37,8 @@ let styles = {
         height: '100%',
         borderWidth: '0px',
         borderRadius: '3px',
-        borderColor: 'black'
+        borderColor: 'black',
+        backgroundColor: '#1e2538'
     },
     openWindow:{
         position: 'absolute',

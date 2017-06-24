@@ -36,7 +36,7 @@ export default class Main extends Component {
         currFrame: page
       }, () => { resolve() });
     }).then(() => {
-      fs.writeFile('./obj.json', JSON.stringify(this.state), 'utf8', () => {
+      fs.writeFile('./reactVR/obj.json', JSON.stringify(this.state, null, 2), 'utf8', () => {
         console.log('Writing Changes to File')
       });
     }).then(() => {
@@ -54,6 +54,12 @@ export default class Main extends Component {
     win.loadURL(this.state.loadURL)
   }
 
+  componentDidMount(){
+    this.setState({
+      loadURL: "http://localhost:8081/vr/?" + Date.now()
+    })
+  }
+  
   updateName(event) {
     let newState = this.state
     newState[event.target.name] = event.target.value;
@@ -64,7 +70,6 @@ export default class Main extends Component {
     let newState = this.state;
     newState.scenes[this.state.currScene].frames[this.state.currFrame][event.target.name] = event.target.value;
     this.setState(newState);
-    this.writeToFile();
   }
 
   writeToFile() {
@@ -86,8 +91,8 @@ export default class Main extends Component {
       dialog.showOpenDialog({
         filters: [
           {
-            name: 'Images',
-            extensions: ['jpg', 'png', 'gif']
+            name: 'Images + Video',
+            extensions: ['jpg', 'png', 'gif', 'mp4']
           }
         ]
       }, function (filePath) {
@@ -108,8 +113,13 @@ export default class Main extends Component {
         }
       })
     }).then((imageURL) => {
+      let imageName = imageURL.slice(0,imageURL.length-4)
       let newState = _this.state;
-      newState.imageURL = imageURL
+      newState.scenes[_this.state.currScene].imageURL = imageURL;
+      console.log(imageName,imageURL)
+      newState.scenes[imageName] = newState.scenes[_this.state[_this.state.currScene]];
+      delete newState.scenes[_this.state[_this.state.currScene]];
+      console.log('new state',newState)
       this.setState(newState)
       this.writeToFile()
     })

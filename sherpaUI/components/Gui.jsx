@@ -20,25 +20,25 @@ class Gui extends Component {
                         name='Front View'
                         page='front'
                         selectPage={this.props.selectPage}
-                        currView={this.props.data.currView}
+                        currFrame={this.props.data.currFrame}
                         properties={this.props.data.front} />
                     <Page id='backpage'
                         name='Back View'
                         page='back'
                         selectPage={this.props.selectPage}
-                        currView={this.props.data.currView}
+                        currFrame={this.props.data.currFrame}
                         properties={this.props.data.back} />
                     <Page id='leftpage'
                         name='Left View'
                         page='left'
                         selectPage={this.props.selectPage}
-                        currView={this.props.data.currView}
+                        currFrame={this.props.data.currFrame}
                         properties={this.props.data.left} />
                     <Page id='rightpage'
                         name='Right View'
                         page='right'
                         selectPage={this.props.selectPage}
-                        currView={this.props.data.currView}
+                        currFrame={this.props.data.currFrame}
                         properties={this.props.data.right} />
                 </div>
                 <Canvas 
