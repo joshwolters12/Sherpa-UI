@@ -20,7 +20,7 @@ class TeleportModule extends Module {
 
 function init(bundle, parent, options) {
   const teleportModule = new TeleportModule();
-  const vr = new VRInstance(bundle, 'starterReactVR', parent, {
+  const vr = new VRInstance(bundle, 'reactVR', parent, {
     // Add custom options here
     enableHotReload: true,
     nativeModules: [ teleportModule ],

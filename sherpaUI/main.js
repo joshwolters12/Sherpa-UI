@@ -29,7 +29,7 @@ app.on('ready', () => {
             message: 'Export to Desktop?',
             buttons: ['OK']
           }, function() {
-            exec("cd starterReactVR && npm run bundle")
+            exec("cd reactVR && npm run bundle")
             console.log('exporting to desktop')
           })
         }
@@ -37,7 +37,7 @@ app.on('ready', () => {
     ]
   })
 
-  exec('node starterReactVR/node_modules/react-native/local-cli/cli.js start')
+  exec('node reactVR/node_modules/react-native/local-cli/cli.js start')
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800
