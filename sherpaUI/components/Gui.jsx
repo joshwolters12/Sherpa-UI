@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Scene from '../components/Scene';
+import SceneContainer from '../components/SceneContainer';
 import Page from '../components/Page';
 import Canvas from '../components/Canvas';
 import Properties from '../components/Properties';
@@ -10,12 +10,17 @@ class Gui extends Component {
     render() {
         return (
             <div style={styles.gui}>
-                <Scene />
+                <SceneContainer
+                    data={this.props.data}
+                    changeScene={this.props.changeScene}
+                    addScene={this.props.addScene}
+                    deleteScene={this.props.deleteScene}
+                />
                 <div id='pageContainer' style={styles.pageContainer}>
-                    <Image 
-                        imageURL = {this.props.imageURL}
-                        chooseImage = {this.props.chooseImage}
-                        />
+                    <Image
+                        imageURL={this.props.imageURL}
+                        chooseImage={this.props.chooseImage}
+                    />
                     <Page id='frontpage'
                         name='Front View'
                         page='front'
@@ -41,16 +46,16 @@ class Gui extends Component {
                         currFrame={this.props.data.currFrame}
                         properties={this.props.data.right} />
                 </div>
-                <Canvas 
-                    loadURL = {this.props.loadURL}
+                <Canvas
+                    loadURL={this.props.loadURL}
                     openWindow={this.props.openWindow}
-                    />
+                />
                 <Properties
                     data={this.props.data}
-                    updateName = {this.props.updateName}
+                    updateName={this.props.updateName}
                     updateProperties={this.props.updateProperties}
                     writeToFile={this.props.writeToFile} />
-                    
+
             </div>
         )
     }
@@ -72,7 +77,7 @@ let styles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
-        padding:'0.2%'
+        padding: '0.2%'
     }
 }
 

@@ -1,10 +1,10 @@
 {
   "projectName": "myProject",
-  "currScene": "chess world",
+  "currScene": "chess-world",
   "currFrame": "front",
-  "loadURL": "http://localhost:8081/vr/?1498343027725",
+  "loadURL": "http://localhost:8081/vr/?1498353671407",
   "scenes": {
-    "chess world": {
+    "island-garden": {
       "imageURL": "island-garden.jpg",
       "frames": {
         "front": {
@@ -37,8 +37,8 @@
         }
       }
     },
-    "winter outdoor": {
-      "imageURL": "winter-outdoor.jpg",
+    "starry-sky": {
+      "imageURL": "starry-sky.jpg",
       "frames": {
         "front": {
           "template": "TitleFrame",
@@ -70,8 +70,41 @@
         }
       }
     },
-    "light show": {
+    "light-show": {
       "imageURL": "light-show.jpg",
+      "frames": {
+        "front": {
+          "template": "TitleFrame",
+          "title": "LIGHT SHOWS IN THE PARK",
+          "subtitle": "FRONT FRONT FRONT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "right": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN THE BLEACHERS",
+          "text": "RIGHT RIGHT RIGHT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "back": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN YOUR PARENTS GARAGE",
+          "text": "BACK BACK BACK",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "left": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN YOUR BED",
+          "text": "LEFT LEFT LEFT",
+          "navleft": "left",
+          "navright": "right"
+        }
+      }
+    },
+    "chess-world": {
+      "imageURL": "chess-world.jpg",
       "frames": {
         "front": {
           "template": "TitleFrame",
