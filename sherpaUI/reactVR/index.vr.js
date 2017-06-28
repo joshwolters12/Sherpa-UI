@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image, Animated } from 'react-vr';
+import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image, VrButton, Text, Animated } from 'react-vr';
 import TextFrame from './components/text-frame.vr.js';
 import TitleFrame from './components/title-frame.vr.js';
 import JumpButton from './components/jump-button.vr.js';
@@ -11,9 +11,12 @@ export default class reactVR extends Component {
   constructor() {
     super();
     this.state = data;
-    this.state.sceneRotateY = data.currFrame === 'front' ? 0   :
-                              data.currFrame === 'right' ? 270 :
-                              data.currFrame === 'back'  ? 180 : 90;
+    this.state.sceneRotateY = data.currFrame === 'front' ? new Animated.Value(0) :
+                              data.currFrame === 'right' ? new Animated.Value(90) :
+                              data.currFrame === 'back'  ? new Animated.Value(180) : new Animated.Value(270);
+    // this.state.rotateOrigin = data.currFrame === 'front' ? 0 :
+    //                           data.currFrame === 'right' ? 90 :
+    //                           data.currFrame === 'back'  ? 180 : 270;
 
     this.state.frontTransformation = {
       translate: [-2.5, 1.5, -5],
@@ -50,30 +53,40 @@ export default class reactVR extends Component {
     this.setState(newState);
   }
 
+  printLocation() {
+    console.log('rotationOfHeadMatrix: ', VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI, 
+                'rotation: ', VrHeadModel.rotation()[1], 
+                'yawPitchRoll: ',VrHeadModel.yawPitchRoll()[1])
+    console.log('fromZeroOrigin: ', 360 - (VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI - this.state.rotateOrigin));//I think this maybe wrong. trying to convert left pos rotation from last rotation to right pos rotation from originfront
+
+  }
+
   navigateY(frameDeg, direction) {
-    let rotationY = VrHeadModel.rotation()[1];
-    while(rotationY >= 360) rotationY-=360;
-    while(rotationY < 0) rotationY+=360;
-    let goTo = frameDeg + direction*90;
-    while(goTo >= 360) goTo-=360;
-    while(goTo < 0) goTo+=360;
-    let degToRot = goTo - rotationY;
-    let updateSceneRotateY = this.state.sceneRotateY+degToRot;
-    while(updateSceneRotateY >= 360) updateSceneRotateY-=360;
-    while(updateSceneRotateY < 0) updateSceneRotateY+=360;
-    this.setState({sceneRotateY: updateSceneRotateY});
+    // let fromZeroOrigin = 360 - (VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI - this.state.rotateOrigin);//I think this maybe wrong. trying to convert left pos rotation from last rotation to right pos rotation from originfront
+    // while(fromZeroOrigin >= 360) fromZeroOrigin - 360;
+    // while(fromZeroOrigin < 0 ) fromZeroOrigin + 360;
 
+    // let newOrigin = Object.assign({}, this.state);
+    // newOrigin.rotateOrigin = frameDeg-direction*90;
+    // this.setState(newOrigin);
 
-    // let updateSceneRotateY = frameDeg+90;
-    // this.setState({sceneRotateY: updateSceneRotateY});
+    // let change = fromZeroOrigin-frameDeg-direction*90
+    // console.log('frameDeg: ',frameDeg);
+    // console.log('rotationOfHeadMatrix: ', VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI )
+    // console.log('frameDeg - fromZeroOrigin: ', frameDeg - fromZeroOrigin)
+    Animated.timing(
+      this.state.sceneRotateY,
+      { toValue: this.state.sceneRotateY._value-direction*90,
+        duration: 2000
+      }
+    ).start();
   }
 
   componentDidMount(){
+    VrHeadModel.rotationOfHeadMatrix();
     VrHeadModel.rotation();
     VrHeadModel.yawPitchRoll();
-    Animated.timing(
-      this.state.slideValue,
-    )
+
   }
 
   render() {
@@ -123,13 +136,30 @@ export default class reactVR extends Component {
     {/*build four frames*/}
   
     return (
-      <View style={{ transform: [{rotateY: this.state.sceneRotateY}] }}>
+      <Animated.View style={{ transform: [{rotateY: this.state.sceneRotateY}] }}>
           <Pano source={asset(this.state.scenes[this.state.currScene].imageURL)}></Pano>
+
+          <VrButton onClick={() => this.printLocation()}
+                    style={{transform: [{translate: [0,-1.78,-5]},{rotateY: 0}]}}>
+            <Text style={{color:'black'}}>{'location'}</Text>  
+          </VrButton>
+          <VrButton onClick={() => this.printLocation()}
+                    style={{transform: [{translate: [5,-1.5,0]},{rotateY: 270}]}}>
+            <Text style={{color:'black'}}>{'location'}</Text>  
+          </VrButton>
+          <VrButton onClick={() => this.printLocation()}
+                    style={{transform: [{translate: [0,-1.5,5]},{rotateY: 180}]}}>
+            <Text style={{color:'black'}}>{'location'}</Text>  
+          </VrButton>
+          <VrButton onClick={() => this.printLocation()}
+                    style={{transform: [{translate: [-5,-1.5,0]},{rotateY: 90}]}}>
+            <Text style={{color:'black'}}>{'location'}</Text>  
+          </VrButton>
 
           {jumpButtons}
           {frames}
 
-      </View>
+      </Animated.View>
     )
   }
 }
