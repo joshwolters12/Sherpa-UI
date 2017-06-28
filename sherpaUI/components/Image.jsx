@@ -4,8 +4,7 @@ class Image extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            opacity: '0.75',
-            text: this.props.imageURL
+            opacity: '0.75'
         }
     }
 
@@ -36,7 +35,7 @@ class Image extends Component {
                 onMouseLeave={() => this.setState({ opacity: '0.75', text: this.props.imageURL })}
                 onClick={this.props.chooseImage}
             >
-                {this.state.text}
+                {this.props.imageURL}
             </div>
         )
     }

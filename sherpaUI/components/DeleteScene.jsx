@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Scene extends Component {
+class DeleteScene extends Component {
     constructor() {
         super()
         this.state = {
@@ -15,28 +15,27 @@ class Scene extends Component {
                 height: '50px',
                 width: '85%',
                 maxWidth: '50px',
-                backgroundColor: (this.props.scene === this.props.data.currScene) ? '#707f9c' : '#1e2538',
                 borderRadius: '3px',
-                color: (this.props.scene === this.props.data.currScene) ? 'white' : '#707f9c',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
                 cursor: 'pointer',
-                opacity: this.state.opacity
+                opacity: this.state.opacity,
+                backgroundColor: '#181b2a'
             }
         }
         return (
             <div
                 style={styles.scene}
-                onClick={() => this.props.changeScene(this.props.scene)}
+                onClick={()=>this.props.deleteScene(this.props.currScene)}
                 onMouseEnter={() => this.setState({ opacity: '1' })}
                 onMouseLeave={() => this.setState({ opacity: '0.75' })}
             >
-                {`S${this.props.num + 1}`}
+                {'D'}
             </div>
         )
 
     }
 }
 
-export default Scene;
+export default DeleteScene;

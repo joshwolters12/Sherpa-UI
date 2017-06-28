@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "projectName": "myProject",
     "currScene": "chess world",
     "currFrame": "right",
@@ -35,72 +36,144 @@
                     "navright": "right"
                 }
             }
+=======
+  "projectName": "myProject",
+  "currScene": "chess-world",
+  "currFrame": "front",
+  "loadURL": "http://localhost:8081/vr/?1498353671407",
+  "scenes": {
+    "island-garden": {
+      "imageURL": "island-garden.jpg",
+      "frames": {
+        "front": {
+          "template": "TitleFrame",
+          "title": "Hello World update all the time?!",
+          "subtitle": "FRONT FRONT FRONT",
+          "navleft": "left",
+          "navright": "right"
+>>>>>>> a928dc12dd796bb647e6fbcf25c039bd1cebc74a
         },
-        "winter outdoor" : {
-            "imageURL": "winter-outdoor.jpg",
-            "frames": {
-                "front": {
-                    "template": "TitleFrame",
-                    "title": "WINTERTITLE",
-                    "subtitle": "FRONT FRONT FRONT",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "right": {
-                    "template": "TextFrame",
-                    "title": "WINTER",
-                    "text": "RIGHT RIGHT RIGHT",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "back": {
-                    "template": "TextFrame",
-                    "title": "SNOWMAN",
-                    "text": "BACK BACK BACK",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "left": {
-                    "template": "TextFrame",
-                    "title": "WINTER",
-                    "text": "LEFT LEFT LEFT",
-                    "navleft": "left",
-                    "navright": "right"
-                }
-            }
+        "right": {
+          "template": "TextFrame",
+          "title": "Hello World",
+          "text": "RIGHT RIGHT RIGHT",
+          "navleft": "left",
+          "navright": "right"
         },
-        "light show" : {
-            "imageURL": "light-show.jpg",
-            "frames": {
-                "front": {
-                    "template": "TitleFrame",
-                    "title": "LIGHT SHOWS IN THE PARK",
-                    "subtitle": "FRONT FRONT FRONT",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "right": {
-                    "template": "TextFrame",
-                    "title": "LIGHT SHOWS IN THE BLEACHERS",
-                    "text": "RIGHT RIGHT RIGHT",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "back": {
-                    "template": "TextFrame",
-                    "title": "LIGHT SHOWS IN YOUR PARENTS GARAGE",
-                    "text": "BACK BACK BACK",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "left": {
-                    "template": "TextFrame",
-                    "title": "LIGHT SHOWS IN YOUR BED",
-                    "text": "LEFT LEFT LEFT",
-                    "navleft": "left",
-                    "navright": "right"
-                }
-            }
+        "back": {
+          "template": "TextFrame",
+          "title": "Hello World update all the time?!h",
+          "text": "BACK BACK BACK",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "left": {
+          "template": "TextFrame",
+          "title": "Hello World",
+          "text": "LEFT LEFT LEFT",
+          "navleft": "left",
+          "navright": "right"
         }
+      }
+    },
+    "starry-sky": {
+      "imageURL": "starry-sky.jpg",
+      "frames": {
+        "front": {
+          "template": "TitleFrame",
+          "title": "WINTERTITLE",
+          "subtitle": "FRONT FRONT FRONT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "right": {
+          "template": "TextFrame",
+          "title": "WINTER",
+          "text": "RIGHT RIGHT RIGHT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "back": {
+          "template": "TextFrame",
+          "title": "SNOWMAN",
+          "text": "BACK BACK BACK",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "left": {
+          "template": "TextFrame",
+          "title": "WINTER",
+          "text": "LEFT LEFT LEFT",
+          "navleft": "left",
+          "navright": "right"
+        }
+      }
+    },
+    "light-show": {
+      "imageURL": "light-show.jpg",
+      "frames": {
+        "front": {
+          "template": "TitleFrame",
+          "title": "LIGHT SHOWS IN THE PARK",
+          "subtitle": "FRONT FRONT FRONT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "right": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN THE BLEACHERS",
+          "text": "RIGHT RIGHT RIGHT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "back": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN YOUR PARENTS GARAGE",
+          "text": "BACK BACK BACK",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "left": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN YOUR BED",
+          "text": "LEFT LEFT LEFT",
+          "navleft": "left",
+          "navright": "right"
+        }
+      }
+    },
+    "chess-world": {
+      "imageURL": "chess-world.jpg",
+      "frames": {
+        "front": {
+          "template": "TitleFrame",
+          "title": "LIGHT SHOWS IN THE PARK",
+          "subtitle": "FRONT FRONT FRONT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "right": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN THE BLEACHERS",
+          "text": "RIGHT RIGHT RIGHT",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "back": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN YOUR PARENTS GARAGE",
+          "text": "BACK BACK BACK",
+          "navleft": "left",
+          "navright": "right"
+        },
+        "left": {
+          "template": "TextFrame",
+          "title": "LIGHT SHOWS IN YOUR BED",
+          "text": "LEFT LEFT LEFT",
+          "navleft": "left",
+          "navright": "right"
+        }
+      }
     }
+  }
 }

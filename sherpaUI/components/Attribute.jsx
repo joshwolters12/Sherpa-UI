@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { TextInput } from 'react-desktop/macOs';
 
 class Attribute extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             backgroundColor: '#bdc2d8',
             color: '#1e2538',
@@ -21,8 +21,9 @@ class Attribute extends Component {
             borderWidth: '1px',
             borderRadius: '3px',
             margin: '0 auto',
-            fontSize:'12px'
+            fontSize: '12px'
         }
+        let currFrameData = this.props.data.scenes[this.props.data.currScene].frames[this.props.data.currFrame]
         return (
             <div style={styles.attributeContainer}>
                 Title
@@ -32,8 +33,8 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="title"
-                        value={this.props.data[this.props.data.currView].title}
-                        onChange={this.props.updateProperties}/>
+                        value={currFrameData.title}
+                        onChange={this.props.updateProperties} />
                 </form>
                 Paragraph
                 <form style={styles.form}>
@@ -42,8 +43,8 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="text"
-                        value={this.props.data[this.props.data.currView].text}
-                        onChange={this.props.updateProperties}/>
+                        value={currFrameData.text}
+                        onChange={this.props.updateProperties} />
                 </form>
                 Navigation
                 <form style={styles.form}>
@@ -53,8 +54,8 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="navleft"
-                        value={this.props.data[this.props.data.currView].navleft}
-                        onChange={this.props.updateProperties}/>
+                        value={currFrameData.navleft}
+                        onChange={this.props.updateProperties} />
                 </form>
                 <form style={styles.form}>
                     <label style={styles.label}>Right</label>
@@ -62,8 +63,8 @@ class Attribute extends Component {
                         type="text"
                         wrap="soft"
                         name="navright"
-                        value={this.props.data[this.props.data.currView].navright}
-                        onChange={this.props.updateProperties}/>
+                        value={currFrameData.navright}
+                        onChange={this.props.updateProperties} />
                 </form>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <button style={button}
@@ -100,7 +101,7 @@ let styles = {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         padding: '2px',
-        
+
     },
     label: {
         padding: '3px',
