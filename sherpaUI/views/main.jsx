@@ -13,6 +13,7 @@ const dialog = require('electron').remote.dialog;
 const { BrowserWindow } = require('electron').remote
 
 
+
 export default class Main extends Component {
   constructor() {
     super();

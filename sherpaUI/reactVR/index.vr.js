@@ -7,6 +7,8 @@ import JumpButton from './components/jump-button.vr.js';
 const data = require('./obj.json');
 
 
+
+
 export default class reactVR extends Component {
   constructor() {
     super();

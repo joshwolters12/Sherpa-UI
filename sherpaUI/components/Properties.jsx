@@ -16,14 +16,10 @@ class Properties extends Component {
             }
 
         }
+        let template = this.props.data.scenes[this.props.data.currScene].frames[this.props.data.currFrame].template
+        console.log(template)
         return (
             <div style={styles.properties}>
-                <Project
-                    data={this.props.data}
-                    updateProperties={this.props.updateProperties}
-                    writeToFile = {this.props.writeToFile}
-                    updateName = {this.props.updateName}
-                />
                 <CoordinatesAndScaling
                     data={this.props.data}
                     updateProperties={this.props.updateProperties}
