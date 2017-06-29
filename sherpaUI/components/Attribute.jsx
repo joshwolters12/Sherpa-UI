@@ -66,13 +66,13 @@ class Attribute extends Component {
                         value={currFrameData.navright}
                         onChange={this.props.updateProperties} />
                 </form>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                {/*<div style={{ display: 'flex', alignItems: 'center' }}>
                     <button style={button}
                         onMouseEnter={() => this.setState({ backgroundColor: '#1e2538', color: '#bdc2d8' })}
                         onMouseLeave={() => this.setState({ backgroundColor: '#bdc2d8', color: '#1e2538' })}
                         onClick={this.props.writeToFile}
                     >Update</button>
-                </div>
+                </div>*/}
             </div>
         )
     }
@@ -81,7 +81,7 @@ class Attribute extends Component {
 let styles = {
     attributeContainer: {
         width: '100%',
-        height: '20%',
+        height: '100%',
         margin: 'auto',
         fontSize: '14px',
         backgroundColor: '#1e2538',

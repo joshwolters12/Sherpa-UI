@@ -1,8 +1,9 @@
 {
   "projectName": "myProject",
-  "currScene": "island-garden",
+  "currScene": "light-show",
   "currFrame": "front",
-  "loadURL": "http://localhost:8081/vr/?14986865432931498686559948",
+  "currTemplate": "TitleFrame",
+  "loadURL": "http://localhost:8081/vr/?1498712519618",
   "scenes": {
     "island-garden": {
       "imageURL": "island-garden.jpg",
@@ -24,7 +25,7 @@
         },
         "back": {
           "template": "TextFrame",
-          "title": "Hello World update all the time?!h",
+          "title": "Hello World update all the time?",
           "text": "BACK BACK BACK",
           "navleft": "left",
           "navright": "right"
@@ -39,7 +40,7 @@
       }
     },
     "starry-sky": {
-      "imageURL": "starry-sky.jpg",
+      "imageURL": "winter-outdoor.jpg",
       "frames": {
         "front": {
           "template": "TitleFrame",
@@ -56,7 +57,7 @@
           "navright": "right"
         },
         "back": {
-          "template": "TextFrame",
+          "template": "TitleFrame",
           "title": "SNOWMAN",
           "text": "BACK BACK BACK",
           "navleft": "left",
