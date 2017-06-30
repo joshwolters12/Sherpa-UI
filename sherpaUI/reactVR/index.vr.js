@@ -14,9 +14,9 @@ export default class reactVR extends Component {
     this.state.sceneRotateY = data.currFrame === 'front' ? new Animated.Value(0) :
                               data.currFrame === 'right' ? new Animated.Value(90) :
                               data.currFrame === 'back'  ? new Animated.Value(180) : new Animated.Value(270);
-    // this.state.rotateOrigin = data.currFrame === 'front' ? 0 :
-    //                           data.currFrame === 'right' ? 90 :
-    //                           data.currFrame === 'back'  ? 180 : 270;
+    this.state.totalRotation = data.currFrame === 'front' ? 0 :
+                              data.currFrame === 'right' ? 90 :
+                              data.currFrame === 'back'  ? 180 : 270;
 
     this.state.frontTransformation = {
       translate: [-2.5, 1.5, -5],
@@ -54,37 +54,71 @@ export default class reactVR extends Component {
   }
 
   printLocation() {
-    console.log('rotationOfHeadMatrix: ', VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI, 
-                'rotation: ', VrHeadModel.rotation()[1], 
-                'yawPitchRoll: ',VrHeadModel.yawPitchRoll()[1])
-    console.log('fromZeroOrigin: ', 360 - (VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI - this.state.rotateOrigin));//I think this maybe wrong. trying to convert left pos rotation from last rotation to right pos rotation from originfront
-
+    let pitch = VrHeadModel.yawPitchRoll()[1];
+    let negPitch = -pitch;
+    while(negPitch >= 360) negPitch -= 360;
+    while(negPitch < 0 ) negPitch += 360;
+    let rotWithZeroOrigin = negPitch + this.state.totalRotation;    
+    while(rotWithZeroOrigin >= 360) rotWithZeroOrigin -= 360;
+    while(rotWithZeroOrigin < 0 ) rotWithZeroOrigin += 360;
+    this.state.sceneRotateY
+    console.log('.......')
+    console.log('Pitch: ',pitch)
+    console.log('rotWithZeroOrigin: ', rotWithZeroOrigin)
+    console.log('this.state.sceneRotateY: ', this.state.sceneRotateY._value)
   }
 
   navigateY(frameDeg, direction) {
-    // let fromZeroOrigin = 360 - (VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI - this.state.rotateOrigin);//I think this maybe wrong. trying to convert left pos rotation from last rotation to right pos rotation from originfront
-    // while(fromZeroOrigin >= 360) fromZeroOrigin - 360;
-    // while(fromZeroOrigin < 0 ) fromZeroOrigin + 360;
+    frameDeg = frameDeg === 90 ? 270 :
+               frameDeg === 270 ? 90 : frameDeg; 
 
-    // let newOrigin = Object.assign({}, this.state);
-    // newOrigin.rotateOrigin = frameDeg-direction*90;
-    // this.setState(newOrigin);
+    let pitch = VrHeadModel.yawPitchRoll()[1];
+    let negPitch = -pitch;
+    while(negPitch >= 360) negPitch -= 360;
+    while(negPitch < 0 ) negPitch += 360;
+    let rotWithZeroOrigin = negPitch + this.state.totalRotation;
+    while(rotWithZeroOrigin >= 360) rotWithZeroOrigin -= 360;
+    while(rotWithZeroOrigin < 0 ) rotWithZeroOrigin += 360;
+    goTo = frameDeg+direction*90;
+    if(frameDeg === 270){
+      while(goTo > 360) goTo -= 360;
+      while(goTo <= 0 ) goTo += 360;
+    }
+    else{
+      while(goTo >= 360) goTo -= 360;
+      while(goTo < 0 ) goTo += 360;
+    }
+    distToRot = goTo - rotWithZeroOrigin;
+    while(distToRot >= 180) distToRot -= 360;
+    while(distToRot <= -180 ) distToRot += 360;
 
-    // let change = fromZeroOrigin-frameDeg-direction*90
-    // console.log('frameDeg: ',frameDeg);
-    // console.log('rotationOfHeadMatrix: ', VrHeadModel.rotationOfHeadMatrix()[1]*180/Math.PI )
-    // console.log('frameDeg - fromZeroOrigin: ', frameDeg - fromZeroOrigin)
+    {
+      console.log('.......')
+      console.log('Pitch: ',pitch)
+      console.log('rotWithZeroOrigin: ', rotWithZeroOrigin)
+      console.log('frameDeg: ', frameDeg)
+      console.log('goTo: ', goTo)
+      console.log('distToRot: ', distToRot)
+      console.log('this.state.sceneRotateY: ', this.state.sceneRotateY._value)
+    }
+
     Animated.timing(
       this.state.sceneRotateY,
-      { toValue: this.state.sceneRotateY._value-direction*90,
+      { 
+        toValue: this.state.sceneRotateY._value+distToRot,
         duration: 2000
       }
     ).start();
+
+
+    let newState = Object.assign({}, this.state);
+    newState.totalRotation = this.state.totalRotation + distToRot;
+    this.setState(newState);
+
+
   }
 
   componentDidMount(){
-    VrHeadModel.rotationOfHeadMatrix();
-    VrHeadModel.rotation();
     VrHeadModel.yawPitchRoll();
 
   }
