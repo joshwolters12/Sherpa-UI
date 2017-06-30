@@ -1,9 +1,9 @@
 {
   "projectName": "myProject",
-  "currScene": "light-show",
+  "currScene": "island-garden",
   "currFrame": "front",
-  "currTemplate": "TitleFrame",
-  "loadURL": "http://localhost:8081/vr/?1498712519618",
+  "currTemplate": "TextFrame",
+  "loadURL": "http://localhost:8081/vr/?14987796137171498779616421",
   "scenes": {
     "island-garden": {
       "imageURL": "island-garden.jpg",
