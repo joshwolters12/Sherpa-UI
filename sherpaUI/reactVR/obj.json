@@ -112,7 +112,7 @@
           "template": "TitleFrame",
           "title": "LIGHT SHOWS IN THE PARK",
           "subtitle": "FRONT FRONT FRONT",
-          "navleft": "left",
+          "navleft": "right",
           "navright": "right"
         },
         "right": {

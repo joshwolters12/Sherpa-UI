@@ -3,7 +3,7 @@
   "version": "1.6.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron -r babel-register .",
+    "start": "electron -r babel-register . && node reactVR/node_modules/react-native/local-cli/cli.js start",
     "bundle": "cd reactVR && npm run bundle",
     "dist": "build",
     "pack": "build --dir",

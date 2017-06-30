@@ -33,7 +33,7 @@ let styles = {
     properties: {
         height: '250px',
         width: '100%',
-        minWidth: '240px',
+        minWidth: '330px',
         margin: '1.8%',
         backgroundColor: '#1e2538',
         padding: '10px',
@@ -46,7 +46,8 @@ let styles = {
         width: '100%',
         fontSize: '14px',
         maxHeight: '20px',
-        marginBottom: '5px',
+        marginLeft: '10px',
+        marginTop: '5px',
         float: 'left'
     }
 }
