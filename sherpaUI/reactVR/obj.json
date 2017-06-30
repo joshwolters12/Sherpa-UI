@@ -1,46 +1,8 @@
 {
-<<<<<<< HEAD
-    "projectName": "myProject",
-    "currScene": "chess world",
-    "currFrame": "front",
-    "scenes": {
-        "chess world": { 
-            "imageURL": "chess-world.jpg",
-            "frames": {
-                "front": {
-                    "template": "TitleFrame",
-                    "title": "Hello World",
-                    "subtitle": "FRONT FRONT FRONT",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "right": {
-                    "template": "TextFrame",
-                    "title": "Hello World",
-                    "text": "RIGHT RIGHT RIGHT",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "back": {
-                    "template": "TextFrame",
-                    "title": "Hello World",
-                    "text": "BACK BACK BACK",
-                    "navleft": "left",
-                    "navright": "right"
-                },
-                "left": {
-                    "template": "TextFrame",
-                    "title": "Hello World",
-                    "text": "LEFT LEFT LEFT",
-                    "navleft": "left",
-                    "navright": "right"
-                }
-            }
-=======
   "projectName": "myProject",
-  "currScene": "chess-world",
+  "currScene": "starry-sky",
   "currFrame": "front",
-  "loadURL": "http://localhost:8081/vr/?1498353671407",
+  "loadURL": "http://localhost:8081/vr/?1498790843561",
   "scenes": {
     "island-garden": {
       "imageURL": "island-garden.jpg",
@@ -51,7 +13,6 @@
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
           "navright": "right"
->>>>>>> a928dc12dd796bb647e6fbcf25c039bd1cebc74a
         },
         "right": {
           "template": "TextFrame",
@@ -149,7 +110,7 @@
           "template": "TitleFrame",
           "title": "LIGHT SHOWS IN THE PARK",
           "subtitle": "FRONT FRONT FRONT",
-          "navleft": "left",
+          "navleft": "right",
           "navright": "right"
         },
         "right": {

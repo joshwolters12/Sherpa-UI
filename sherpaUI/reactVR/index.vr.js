@@ -53,21 +53,6 @@ export default class reactVR extends Component {
     this.setState(newState);
   }
 
-  printLocation() {
-    let pitch = VrHeadModel.yawPitchRoll()[1];
-    let negPitch = -pitch;
-    while(negPitch >= 360) negPitch -= 360;
-    while(negPitch < 0 ) negPitch += 360;
-    let rotWithZeroOrigin = negPitch + this.state.totalRotation;    
-    while(rotWithZeroOrigin >= 360) rotWithZeroOrigin -= 360;
-    while(rotWithZeroOrigin < 0 ) rotWithZeroOrigin += 360;
-    this.state.sceneRotateY
-    console.log('.......')
-    console.log('Pitch: ',pitch)
-    console.log('rotWithZeroOrigin: ', rotWithZeroOrigin)
-    console.log('this.state.sceneRotateY: ', this.state.sceneRotateY._value)
-  }
-
   navigateY(frameDeg, direction) {
     frameDeg = frameDeg === 90 ? 270 :
                frameDeg === 270 ? 90 : frameDeg; 
@@ -90,17 +75,6 @@ export default class reactVR extends Component {
     }
     distToRot = goTo - rotWithZeroOrigin;
     while(distToRot >= 180) distToRot -= 360;
-    while(distToRot <= -180 ) distToRot += 360;
-
-    {
-      console.log('.......')
-      console.log('Pitch: ',pitch)
-      console.log('rotWithZeroOrigin: ', rotWithZeroOrigin)
-      console.log('frameDeg: ', frameDeg)
-      console.log('goTo: ', goTo)
-      console.log('distToRot: ', distToRot)
-      console.log('this.state.sceneRotateY: ', this.state.sceneRotateY._value)
-    }
 
     Animated.timing(
       this.state.sceneRotateY,
@@ -172,23 +146,6 @@ export default class reactVR extends Component {
     return (
       <Animated.View style={{ transform: [{rotateY: this.state.sceneRotateY}] }}>
           <Pano source={asset(this.state.scenes[this.state.currScene].imageURL)}></Pano>
-
-          <VrButton onClick={() => this.printLocation()}
-                    style={{transform: [{translate: [0,-1.78,-5]},{rotateY: 0}]}}>
-            <Text style={{color:'black'}}>{'location'}</Text>  
-          </VrButton>
-          <VrButton onClick={() => this.printLocation()}
-                    style={{transform: [{translate: [5,-1.5,0]},{rotateY: 270}]}}>
-            <Text style={{color:'black'}}>{'location'}</Text>  
-          </VrButton>
-          <VrButton onClick={() => this.printLocation()}
-                    style={{transform: [{translate: [0,-1.5,5]},{rotateY: 180}]}}>
-            <Text style={{color:'black'}}>{'location'}</Text>  
-          </VrButton>
-          <VrButton onClick={() => this.printLocation()}
-                    style={{transform: [{translate: [-5,-1.5,0]},{rotateY: 90}]}}>
-            <Text style={{color:'black'}}>{'location'}</Text>  
-          </VrButton>
 
           {jumpButtons}
           {frames}
