@@ -2,7 +2,7 @@
 <<<<<<< HEAD
     "projectName": "myProject",
     "currScene": "chess world",
-    "currFrame": "right",
+    "currFrame": "front",
     "scenes": {
         "chess world": { 
             "imageURL": "chess-world.jpg",
