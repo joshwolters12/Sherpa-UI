@@ -6,9 +6,6 @@ import JumpButton from './components/jump-button.vr.js';
 
 const data = require('./obj.json');
 
-
-
-
 export default class reactVR extends Component {
   constructor() {
     super();
@@ -22,26 +19,26 @@ export default class reactVR extends Component {
 
     this.state.frontTransformation = {
       translate: [-2.5, 1.5, -5],
-      leftTranslate: [-5.5, 0, -5],
-      rightTranslate: [.5, 0, -5],
+      leftTranslate: [-5.5, 1.5, -5],
+      rightTranslate: [.5, 1.5, -5],
       rotateY: 0
     }
     this.state.rightTransformation = {
-      translate: [2.5, 1.5, 0],
-      leftTranslate: [2.5, 0, -3],
-      rightTranslate: [2.5, 0, 3],
+      translate: [2.7,1.5,-.4],
+      leftTranslate: [2.7,1.5,-3.25],
+      rightTranslate: [2.7,1.5,2.45],
       rotateY: 270
     }
     this.state.backTransformation = {
-      translate: [-2.5, 1.5, 5],
-      leftTranslate: [.5, 0, 5],
-      rightTranslate: [-5.5, 0, 5],
+      translate: [-1.7, 1.5, 5],
+      leftTranslate: [1.3, 1.5, 5],
+      rightTranslate: [-4.7, 1.5, 5],
       rotateY: 180
     }
     this.state.leftTransformation = {
-      translate: [-7.5, 1.5, 0],
-      leftTranslate: [-7.5, 0, 3],
-      rightTranslate: [-7.5, 0, -3],
+      translate: [-7.1,1.5,.4],
+      leftTranslate: [-7.1,1.5,3.4],
+      rightTranslate: [-7.1,1.5,-2.6],
       rotateY: 90
     }
 
@@ -146,7 +143,9 @@ export default class reactVR extends Component {
     {/*build four frames*/}
   
     return (
-      <Animated.View style={{ transform: [{rotateY: this.state.sceneRotateY}] }}>
+      <Animated.View style={{ transform: [{rotateY: this.state.sceneRotateY}, 
+                                          {translateY: 0 }
+                                         ] }}>
           <Pano source={asset(this.state.scenes[this.state.currScene].imageURL)}></Pano>
 
           {jumpButtons}
