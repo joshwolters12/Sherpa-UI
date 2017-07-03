@@ -21,7 +21,10 @@ export default class Nav extends Component {
                 <Image source={asset(`arrow`+this.props.direction+`.png`)}
                     style={{ width: .4, 
                                 height: .4,
-                                transform: [ {translate: this.props.translate}, {rotateY: this.props.rotateY}],
+                                transform: [ 
+                                             {translate: this.props.translate}, 
+                                             {rotateY: this.props.rotateY},
+                                             ],
                             }}
                 />
             </VrButton>

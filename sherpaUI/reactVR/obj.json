@@ -3,14 +3,14 @@
   "currScene": "island-garden",
   "currFrame": "front",
   "currTemplate": "TextFrame",
-  "loadURL": "http://localhost:8081/vr/?14987796137171498779616421",
+  "loadURL": "http://localhost:8081/vr/?1498844345022149884435184514988443555321498844358257",
   "scenes": {
     "island-garden": {
       "imageURL": "island-garden.jpg",
       "frames": {
         "front": {
-          "template": "TitleFrame",
-          "title": "Hello World update all the time?!",
+          "template": "TextFrame",
+          "title": "FRONT FRONT FRONT",
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
           "navright": "right",
@@ -18,21 +18,21 @@
         },
         "right": {
           "template": "TextFrame",
-          "title": "Hello World",
+          "title": "RIGHT RIGHT RIGHT",
           "text": "RIGHT RIGHT RIGHT",
           "navleft": "left",
           "navright": "right"
         },
         "back": {
           "template": "TextFrame",
-          "title": "Hello World update all the time?",
+          "title": "BACK BACK BACK",
           "text": "BACK BACK BACK",
           "navleft": "left",
           "navright": "right"
         },
         "left": {
           "template": "TextFrame",
-          "title": "Hello World",
+          "title": "AAAAAAAAIAAAAAAAA",
           "text": "LEFT LEFT LEFT",
           "navleft": "left",
           "navright": "right"
@@ -80,39 +80,6 @@
           "title": "LIGHT SHOWS IN THE PARK",
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
-          "navright": "right"
-        },
-        "right": {
-          "template": "TextFrame",
-          "title": "LIGHT SHOWS IN THE BLEACHERS",
-          "text": "RIGHT RIGHT RIGHT",
-          "navleft": "left",
-          "navright": "right"
-        },
-        "back": {
-          "template": "TextFrame",
-          "title": "LIGHT SHOWS IN YOUR PARENTS GARAGE",
-          "text": "BACK BACK BACK",
-          "navleft": "left",
-          "navright": "right"
-        },
-        "left": {
-          "template": "TextFrame",
-          "title": "LIGHT SHOWS IN YOUR BED",
-          "text": "LEFT LEFT LEFT",
-          "navleft": "left",
-          "navright": "right"
-        }
-      }
-    },
-    "chess-world": {
-      "imageURL": "chess-world.jpg",
-      "frames": {
-        "front": {
-          "template": "TitleFrame",
-          "title": "LIGHT SHOWS IN THE PARK",
-          "subtitle": "FRONT FRONT FRONT",
-          "navleft": "right",
           "navright": "right"
         },
         "right": {
