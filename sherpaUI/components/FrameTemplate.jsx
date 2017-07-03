@@ -13,7 +13,7 @@ class FrameTemplate extends Component {
         let styles = {
             frameTemplate: {
                 height: '80px',
-                width: '43%',
+                width: '42.2%',
                 backgroundColor: (this.props.template === this.props.data.currTemplate) ? '#707f9c' : '#181b2a',
                 color: (this.props.template === this.props.data.currTemplate) ? 'white' : '#707f9c',
                 borderColor: 'white',
@@ -33,7 +33,6 @@ class FrameTemplate extends Component {
                 display: 'inline'
             }
         }
-        console.log('clicked temp',this.props.template)
         return (
             <div style={styles.frameHolder}>
                 <div

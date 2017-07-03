@@ -4,7 +4,6 @@ import templates from '../components/frame_templates/FrameTemplates';
 class CoordinatesAndScaling extends Component {
     render() {
         const TemplateFrame = templates[this.props.data.scenes[this.props.data.currScene].frames[this.props.data.currFrame].template]
-        console.log('template frame',TemplateFrame)
         return (
             <div style={styles.properties}>
                 <TemplateFrame

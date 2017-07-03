@@ -8,7 +8,6 @@ class SceneContainer extends Component {
         let sceneArray = [];
         let sceneKeys = Object.keys(this.props.data.scenes)
         sceneKeys.forEach((e, i) => {
-            console.log(e)
             sceneArray.push(<Scene
                 data={this.props.data}
                 scene={e}
