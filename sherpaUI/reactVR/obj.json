@@ -10,8 +10,8 @@
       "imageURL": "island-garden.jpg",
       "frames": {
         "front": {
-          "template": "TitleFrame",
-          "title": "Hello World update all the time?!",
+          "template": "TextFrame",
+          "title": "FRONT FRONT FRONT",
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
           "navright": "right",
@@ -19,7 +19,7 @@
         },
         "right": {
           "template": "TextFrame",
-          "title": "Hello World",
+          "title": "RIGHT RIGHT RIGHT",
           "text": "RIGHT RIGHT RIGHT",
           "navleft": "left",
           "navright": "right"

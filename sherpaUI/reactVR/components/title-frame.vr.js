@@ -14,10 +14,12 @@ export default class TextFrame extends Component {
                          alignItems: 'center',
                          flexDirection: 'column',
                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                         transform: [ {translate: [ this.props.transformation.translate[0],
+                         transform: [ 
+                                      {translate: [ this.props.transformation.translate[0],
                                                     this.props.transformation.translate[1]-.8,
                                                     this.props.transformation.translate[2]]}, 
-                                      {rotateY: this.props.transformation.rotateY} ]
+                                      {rotateY: this.props.transformation.rotateY}, 
+                                      ]
                      }}>
 
           {/*TITLE*/}
