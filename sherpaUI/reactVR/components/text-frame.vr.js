@@ -16,11 +16,13 @@ export default class TextFrame extends Component {
                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
                        transform: [ 
                                     {translate: this.props.transformation.translate}, 
-                                    {rotateY: this.props.transformation.rotateY}, 
-                                    ]
+                                    
+                                    {rotateY: this.props.transformation.rotateY} ]
                      }}>
           {/*TITLE*/}
           <Text style={{
+                  margin: 0,
+                  padding: 0,
                   fontSize: .5,
                   color: 'white',
                 }}>
@@ -30,6 +32,8 @@ export default class TextFrame extends Component {
 
           {/*TEXT*/}
           <Text style={{
+                  margin: 0,
+                  padding: 0,
                   fontSize: .2,
                   color: 'white',
                 }}>
