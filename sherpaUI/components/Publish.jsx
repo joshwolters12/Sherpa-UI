@@ -31,7 +31,7 @@ class Publish extends Component {
                 <button
                     style={styles.button}
                     onClick={this.props.publish}
-                >Publish Project</button>
+                >{this.props.publishingStatus}</button>
             </div>
         )
     }

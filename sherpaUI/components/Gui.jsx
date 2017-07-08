@@ -54,10 +54,12 @@ class Gui extends Component {
                         currFrame={this.props.data.currFrame}
                         properties={this.props.data.right} />
                 </div>
+                <div style={styles.canvas}>
                 <Canvas
                     loadURL={this.props.loadURL}
                     openWindow={this.props.openWindow}
                 />
+                </div>
                 <div style={styles.templateContainer}>
                     <div style={styles.propertiesContainer}>
                         <Properties
@@ -105,7 +107,14 @@ let styles = {
     templateContainer: {
         display: 'flex',
         flexDirection: 'column',
-        width: '25%'
+        width: '290px',
+        minWidth: '290px'
+    },
+    canvas: {
+        width: '100%',
+        height: '100%',
+        paddingBottom: '0.75%',
+        paddingTop: '0.25%'
     }
 }
 

@@ -28,7 +28,10 @@ class Open extends Component {
 
         return (
             <div style={styles.publishContainer}>
-                <button style={styles.button}>Open Project...</button>
+                <button 
+                    style={styles.button}
+                    onClick={this.props.openProject}
+                >Open Project...</button>
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image, VrButton, Text, Animated } from 'react-vr';
+import { AppRegistry, asset, Pano, View, Scene, VrHeadModel, Image, VrButton, Text, Animated, VideoPano } from 'react-vr';
 import TextFrame from './components/text-frame.vr.js';
 import TitleFrame from './components/title-frame.vr.js';
 import JumpButton from './components/jump-button.vr.js';
@@ -11,8 +11,8 @@ export default class reactVR extends Component {
     super();
     this.state = data;
     this.state.sceneRotateY = data.currFrame === 'front' ? new Animated.Value(0) :
-                              data.currFrame === 'right' ? new Animated.Value(90) :
-                              data.currFrame === 'back'  ? new Animated.Value(180) : new Animated.Value(270);
+      data.currFrame === 'right' ? new Animated.Value(90) :
+        data.currFrame === 'back' ? new Animated.Value(180) : new Animated.Value(270);
     this.state.totalRotation = data.currFrame === 'front' ? 0 :
                                data.currFrame === 'right' ? 90 :
                                data.currFrame === 'back'  ? 180 : 270;
@@ -54,31 +54,31 @@ export default class reactVR extends Component {
 
   navigateY(frameDeg, direction) {
     frameDeg = frameDeg === 90 ? 270 :
-               frameDeg === 270 ? 90 : frameDeg; 
+      frameDeg === 270 ? 90 : frameDeg;
 
     let pitch = VrHeadModel.yawPitchRoll()[1];
     let negPitch = -pitch;
-    while(negPitch >= 360) negPitch -= 360;
-    while(negPitch < 0 ) negPitch += 360;
+    while (negPitch >= 360) negPitch -= 360;
+    while (negPitch < 0) negPitch += 360;
     let rotWithZeroOrigin = negPitch + this.state.totalRotation;
-    while(rotWithZeroOrigin >= 360) rotWithZeroOrigin -= 360;
-    while(rotWithZeroOrigin < 0 ) rotWithZeroOrigin += 360;
-    goTo = frameDeg+direction*90;
-    if(frameDeg === 270){
-      while(goTo > 360) goTo -= 360;
-      while(goTo <= 0 ) goTo += 360;
+    while (rotWithZeroOrigin >= 360) rotWithZeroOrigin -= 360;
+    while (rotWithZeroOrigin < 0) rotWithZeroOrigin += 360;
+    goTo = frameDeg + direction * 90;
+    if (frameDeg === 270) {
+      while (goTo > 360) goTo -= 360;
+      while (goTo <= 0) goTo += 360;
     }
-    else{
-      while(goTo >= 360) goTo -= 360;
-      while(goTo < 0 ) goTo += 360;
+    else {
+      while (goTo >= 360) goTo -= 360;
+      while (goTo < 0) goTo += 360;
     }
     distToRot = goTo - rotWithZeroOrigin;
-    while(distToRot >= 180) distToRot -= 360;
+    while (distToRot >= 180) distToRot -= 360;
 
     Animated.timing(
       this.state.sceneRotateY,
-      { 
-        toValue: this.state.sceneRotateY._value+distToRot,
+      {
+        toValue: this.state.sceneRotateY._value + distToRot,
         duration: 2000
       }
     ).start();
@@ -91,55 +91,52 @@ export default class reactVR extends Component {
 
   }
 
-  componentDidMount(){
+  componentDidMount() {
     VrHeadModel.yawPitchRoll();
 
   }
 
   render() {
-    
-    {/*build four frames*/}
-    let frames = [];
+    {/*build jump buttons*/ }
     let jumpButtons = [];
-    for(let key in this.state.scenes[this.state.currScene].frames){
-      {/*build jump buttons*/}
-      for(let scene in this.state.scenes){
-        if(scene !== this.state.currScene && (key ==='front' ) ){
-          jumpButtons.push(
-            
-            <JumpButton key={scene+key}
-                        frame={key}
-                        scene={scene}
-                        changeScene={this.changeScene}//
-                        imageURL={this.state.scenes[scene].imageURL}
-                        transformation={this.state[key+'Transformation']}
-            />
-          )
-        }
+    let i = 0;
+    for (let key in this.state.scenes) {
+      if (key !== this.state.currScene) {
+        jumpButtons.push(
+          <JumpButton key={i}
+            scene={key}
+            changeScene={this.changeScene}
+            imageURL={this.state.scenes[key].imageURL} />
+        )
       }
-      {/*build jump buttons*/}
-    
+      i++;
+    }
+    {/*build jump buttons*/ }
+
+    {/*build four frames*/ }
+    let frames = [];
+    for (let key in this.state.scenes[this.state.currScene].frames) {
+
       let frame = this.state.scenes[this.state.currScene].frames[key];
-      if(frame.template === 'TitleFrame'){
+      if (frame.template === 'TitleFrame') {
         frames.push(
-          
+
           <TitleFrame key={key}
-                      navigateY={this.navigateY}
-                      transformation={this.state[key+'Transformation']}
-                      title={this.state.scenes[this.state.currScene].frames[key].title}
-                      subtitle={this.state.scenes[this.state.currScene].frames[key].subtitle} 
+            navigateY={this.navigateY}
+            transformation={this.state[key + 'Transformation']}
+            title={this.state.scenes[this.state.currScene].frames[key].title}
+            subtitle={this.state.scenes[this.state.currScene].frames[key].subtitle}
           />
         )
       }
-      else if(frame.template === 'TextFrame'){
+      else if (frame.template === 'TextFrame') {
         frames.push(
-          
           <TextFrame key={key}
-                     navigateY={this.navigateY}
-                     transformation={this.state[key+'Transformation']}
-                     title={this.state.scenes[this.state.currScene].frames[key].title}
-                     text={this.state.scenes[this.state.currScene].frames[key].text} 
-          />  
+            navigateY={this.navigateY}
+            transformation={this.state[key + 'Transformation']}
+            title={this.state.scenes[this.state.currScene].frames[key].title}
+            text={this.state.scenes[this.state.currScene].frames[key].text}
+          />
         )
       }
     }

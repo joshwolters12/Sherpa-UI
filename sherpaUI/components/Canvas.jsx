@@ -26,9 +26,8 @@ class Canvas extends Component {
 let styles = {
     canvas: {
         backgroundColor: 'grey',
-        width: '55%',
-        height: 'auto',
-        minWidth: '575px',
+        width: 'auto',
+        height: '100%',
         margin: '0.5% 0',
         position:'relative'
     },

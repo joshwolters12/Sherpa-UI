@@ -19,11 +19,5 @@ window.onload = function () {
   webview.addEventListener('did-start-loading', loadstart);
   webview.addEventListener('did-stop-loading', loadstop);
 
-  // webview.addEventListener('did-fail-load', (e) => {
-  //   console.log('error?',e.errorCode)
-  //   console.log('error?',e.isMainFrame)
-  //   // webview.reload()
-  // })
-
 }
 

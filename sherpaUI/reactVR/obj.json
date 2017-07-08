@@ -1,4 +1,5 @@
 {
+
   "projectName": "myProject",
   "currScene": "light-show",
   "currFrame": "front",
@@ -108,4 +109,4 @@
     }
   },
   "currTemplate": "TextFrame"
-}
+  "publishingStatus": "Publish Project"

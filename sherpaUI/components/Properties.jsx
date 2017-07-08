@@ -37,7 +37,6 @@ class Properties extends Component {
             }
         }
         let template = this.props.data.scenes[this.props.data.currScene].frames[this.props.data.currFrame].template
-        console.log(template)
         return (
             <div style={styles.properties}>
                 <CoordinatesAndScaling

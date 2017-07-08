@@ -4,20 +4,32 @@ import Gui from '../components/Gui';
 import Publish from '../components/Publish';
 import Open from '../components/Open';
 import Save from '../components/Save';
+import NewProject from '../components/NewProject';
+
 
 const exec = require('child_process').exec
 const fs = require('fs-extra');
-var data = require('../reactVR/obj.json');
-data.loadURL = data.loadURL + Date.now()
-const dialog = require('electron').remote.dialog;
-const { BrowserWindow } = require('electron').remote
+const memory = require('../reactVR/obj.json');
 
+
+try {
+    var data = require(memory.projectPath);
+    // do stuff
+} catch (ex) {
+    data = require('../reactVR/template.json');
+}
+
+
+data.loadURL = data.loadURL + Date.now();
+const dialog = require('electron').remote.dialog;
+const { BrowserWindow } = require('electron').remote;
 
 
 export default class Main extends Component {
   constructor() {
     super();
     this.state = data;
+    this.state.publishingStatus = 'Publish Project'
 
     //bound functions
     this.selectPage = this.selectPage.bind(this)
@@ -32,8 +44,11 @@ export default class Main extends Component {
     this.addScene = this.addScene.bind(this)
     this.deleteScene = this.deleteScene.bind(this)
     this.changeTemplate = this.changeTemplate.bind(this)
+    this.newProject = this.newProject.bind(this)
+    this.updateVRView = this.newProject.bind(this)
+    this.openProject = this.openProject.bind(this)
   }
-
+  
   addScene(scene) {
     let _this = this;
     new Promise((resolve, reject) => {
@@ -161,6 +176,12 @@ export default class Main extends Component {
   }
 
   writeToFile() {
+    console.log('projectpath',this.state.projectPath)
+    //write to original file
+    fs.writeFile(this.state.projectPath, JSON.stringify(this.state, null, 2), 'utf8', () => {
+      console.log('Writing Changes to File')
+    });
+    //write to VR Render
     fs.writeFile('./reactVR/obj.json', JSON.stringify(this.state, null, 2), 'utf8', () => {
       console.log('Writing Changes to File')
     });
@@ -170,7 +191,73 @@ export default class Main extends Component {
   }
 
   publish() {
-    exec("npm run publish")
+    let filePath = this.state.projectPath
+    filePath = filePath.split("/")
+    filePath.pop()
+    filePath = filePath.join("/")
+    this.setState({publishingStatus: 'Publishing...Wait'})
+
+    let _this = this;
+    exec("cd reactVR && npm run bundle",(err)=>{
+      console.log('index.html path',filePath)
+      fs.copy('./reactVR/bundle/index.html',filePath+'/index.html')
+      fs.copy('./reactVR/vr/build/client.bundle.js',filePath+'/client.bundle.js')
+      fs.copy('./reactVR/vr/build/index.bundle.js',filePath+'/index.bundle.js')
+      fs.copy('./reactVR/static_assets',filePath+'/static_assets')
+      _this.setState({publishingStatus: 'Publish Project'})
+    })
+
+  }
+
+  newProject() {
+    let _this = this;
+    //save project and create new folder
+    dialog.showSaveDialog(
+      {
+        title: "Choose where to save your project."
+      }, function (filePath) {
+      let projectName = filePath.split("/").pop();
+      fs.mkdir(filePath, () => {
+        fs.readFile('./reactVR/template.json', "utf8",function(err, data) {
+          data = JSON.parse(data)
+          if (err) return console.log(err)
+          data.projectPath = filePath+`/${projectName}.json`;
+          data.projectName = projectName;
+          data.loadURL = 'http://localhost:8081/vr/?'+Date.now();
+          //update new file with the paths
+          fs.writeFile(data.projectPath,data,()=>{
+            //update GUI with new Project
+              _this.setState(data);
+              _this.writeToFile();
+          })
+        })
+      })
+    })
+  }
+
+  openProject(){
+    let _this = this;
+    dialog.showOpenDialog({
+        filters: [
+          {
+            name: 'JSON',
+            extensions: ['json']
+          }
+        ]
+      }, function (filePath) {
+        if (filePath === undefined) return;
+        let imageToLoad = filePath[0].split("/").pop();
+        let pathLength = filePath[0].split("/").length;
+        let pathMatch = filePath[0].split("/").slice(pathLength - 4, pathLength).join("/");
+
+        fs.readFile(filePath[0], "utf8", function(err, data) {
+          data = JSON.parse(data)
+          if (err) return console.log(err)
+              data.loadURL = 'http://localhost:8081/vr/?'+Date.now();
+              _this.setState(data);
+              _this.writeToFile();
+          })
+      })
   }
 
   chooseImage() {
@@ -217,13 +304,22 @@ export default class Main extends Component {
     return (
       <div id='appcontainer' style={styles.appcontainer} >
         <div id="headspacer" style={styles.header}>
-          <Open />
-          <Save />
+          <Open 
+            openProject={this.openProject}  
+          />
+          <NewProject
+            newProject={this.newProject}
+          />
           <div style={styles.logo}>
             <img src="./reactVR/static_assets/sherpa.png" />
           </div>
+          <Save
+            saveFile={this.writeToFile}
+            projectName = {this.state.projectName}
+          />
           <Publish
             publish={this.publish}
+            publishingStatus = {this.state.publishingStatus}
           />
         </div>
         <Gui

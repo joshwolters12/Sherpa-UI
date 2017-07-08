@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Open extends Component {
+class Save extends Component {
     constructor() {
         super()
     }
@@ -10,9 +10,10 @@ class Open extends Component {
             publishContainer: {
                 width: '120px',
                 height: '35px',
-                alignSelf: 'left',
-                float: 'left',
-                margin: 'auto -260px auto 20px'
+                alignSelf: 'center',
+                float: 'right',
+                margin: 'auto 140px auto 20px',
+                zIndex: '1000'
                 
             },
             button:{
@@ -28,7 +29,10 @@ class Open extends Component {
 
         return (
             <div style={styles.publishContainer}>
-                <button style={styles.button}>+ Save Project</button>
+                <button 
+                    style={styles.button}
+                    onClick={this.props.saveFile}
+                >{'+Save '+this.props.projectName}</button>
             </div>
         )
     }
@@ -37,4 +41,4 @@ class Open extends Component {
 
 
 
-export default Open;
+export default Save;
