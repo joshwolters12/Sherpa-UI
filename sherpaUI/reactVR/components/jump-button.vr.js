@@ -5,11 +5,6 @@ import { View, Text, VrButton, Image, asset } from 'react-vr';
 export default class JumpButton extends Component {
 
   render() {
-    let x = this.props.transformation.translate[0] //+ this.props.frame === 'front' ?  -1 : 
-                                      //this.props.frame === 'back' ? 1 : 0;
-    let y = this.props.transformation.translate[1];
-    let z = this.props.transformation.translate[2] //+ this.props.frame === 'right' ? -1 :
-                                      //this.props.frame === 'left' ? 1 : 0;
     return (
         <VrButton onClick={()=>this.props.changeScene(this.props.scene)}
                   style={{
@@ -22,8 +17,7 @@ export default class JumpButton extends Component {
                       height: .2,
                       justifyContent: 'center',
                       transform: [
-                        {translate: [x, y, z]},,
-                        {rotateY: this.props.transformation.rotateY},
+                        {translate: [-2.5, 1.5, -5]}
                       ]
                   }}>
             <Text style={{
