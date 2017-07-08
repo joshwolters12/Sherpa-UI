@@ -14,31 +14,31 @@ export default class reactVR extends Component {
       data.currFrame === 'right' ? new Animated.Value(90) :
         data.currFrame === 'back' ? new Animated.Value(180) : new Animated.Value(270);
     this.state.totalRotation = data.currFrame === 'front' ? 0 :
-      data.currFrame === 'right' ? 90 :
-        data.currFrame === 'back' ? 180 : 270;
+                               data.currFrame === 'right' ? 90 :
+                               data.currFrame === 'back'  ? 180 : 270;
 
     this.state.frontTransformation = {
       translate: [-2.5, 1.5, -5],
-      leftTranslate: [-5.5, 1.5, -5],
-      rightTranslate: [.5, 1.5, -5],
+      leftTranslate: [-5.5, 0, -5],
+      rightTranslate: [.5, 0, -5],
       rotateY: 0
     }
     this.state.rightTransformation = {
-      translate: [2.7,1.5,-.4],
-      leftTranslate: [2.7,1.5,-3.25],
-      rightTranslate: [2.7,1.5,2.45],
+      translate: [2.5, 1.5, -1],
+      leftTranslate: [2.5, 0, -4],
+      rightTranslate: [2.5, 0, 2],
       rotateY: 270
     }
     this.state.backTransformation = {
-      translate: [-1.7, 1.5, 5],
-      leftTranslate: [1.3, 1.5, 5],
-      rightTranslate: [-4.7, 1.5, 5],
+      translate: [-2.5, 1.5, 5],
+      leftTranslate: [.5, 0, 5],
+      rightTranslate: [-5.5, 0, 5],
       rotateY: 180
     }
     this.state.leftTransformation = {
-      translate: [-7.1,1.5,.4],
-      leftTranslate: [-7.1,1.5,3.4],
-      rightTranslate: [-7.1,1.5,-2.6],
+      translate: [-7.5, 1.5, 0],
+      leftTranslate: [-7.5, 0, 3],
+      rightTranslate: [-7.5, 0, -3],
       rotateY: 90
     }
 
@@ -115,12 +115,13 @@ export default class reactVR extends Component {
 
     {/*build four frames*/ }
     let frames = [];
-    i = 0;
     for (let key in this.state.scenes[this.state.currScene].frames) {
+
       let frame = this.state.scenes[this.state.currScene].frames[key];
       if (frame.template === 'TitleFrame') {
         frames.push(
-          <TitleFrame key={i}
+
+          <TitleFrame key={key}
             navigateY={this.navigateY}
             transformation={this.state[key + 'Transformation']}
             title={this.state.scenes[this.state.currScene].frames[key].title}
@@ -130,7 +131,7 @@ export default class reactVR extends Component {
       }
       else if (frame.template === 'TextFrame') {
         frames.push(
-          <TextFrame key={i}
+          <TextFrame key={key}
             navigateY={this.navigateY}
             transformation={this.state[key + 'Transformation']}
             title={this.state.scenes[this.state.currScene].frames[key].title}
@@ -138,15 +139,18 @@ export default class reactVR extends Component {
           />
         )
       }
-      i++;
     }
     {/*build four frames*/}
   
     return (
-      <Animated.View style={{ transform: [{ rotateY: this.state.sceneRotateY }] }}>
-        <Pano source={asset(this.state.scenes[this.state.currScene].imageURL)}></Pano>
-        {jumpButtons}
-        {frames}
+      <Animated.View style={{ transform: [{rotateY: this.state.sceneRotateY}, {translateY: -0}] }}>
+          <Pano source={asset(this.state.scenes[this.state.currScene].imageURL)}></Pano>
+          <View style={{
+            flexDirection:'row'
+          }}>
+            {jumpButtons}
+          </View>
+          {frames}
 
       </Animated.View>
     )

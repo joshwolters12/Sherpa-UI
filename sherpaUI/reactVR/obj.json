@@ -1,38 +1,37 @@
 {
-  "projectName": "testingh6",
-  "currScene": "starry-sky",
+
+  "projectName": "myProject",
+  "currScene": "light-show",
   "currFrame": "front",
-  "currTemplate": "TitleFrame",
-  "loadURL": "http://localhost:8081/vr/?1499125643230",
-  "projectPath": "/Users/joshuawolters/Desktop/testingh6/testingh6.json",
+  "loadURL": "http://localhost:8081/vr/?149947034701714994703573131499470360195",
   "scenes": {
-    "island-garden": {
-      "imageURL": "island-garden.jpg",
+    "chess world": {
+      "imageURL": "chess-world.jpg",
       "frames": {
         "front": {
           "template": "TextFrame",
-          "title": "FRONT FRONT FRONT",
+          "title": "Front Title",
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
           "navright": "right",
-          "text": "sajhdfjlas"
+          "text": "Front Text"
         },
         "right": {
           "template": "TextFrame",
-          "title": "RIGHT RIGHT RIGHT",
+          "title": "Hello World",
           "text": "RIGHT RIGHT RIGHT",
           "navleft": "left",
           "navright": "right"
         },
         "back": {
-          "template": "None",
-          "title": "Hello World update all the time?",
+          "template": "TextFrame",
+          "title": "Back Title",
           "text": "BACK BACK BACK",
           "navleft": "left",
           "navright": "right"
         },
         "left": {
-          "template": "TitleFrame",
+          "template": "TextFrame",
           "title": "Hello World",
           "text": "LEFT LEFT LEFT",
           "navleft": "left",
@@ -40,15 +39,16 @@
         }
       }
     },
-    "starry-sky": {
+    "winter outdoor": {
       "imageURL": "winter-outdoor.jpg",
       "frames": {
         "front": {
           "template": "TitleFrame",
-          "title": "WINTERTITLE",
+          "title": "This is some new text!",
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
-          "navright": "right"
+          "navright": "right",
+          "text": ""
         },
         "right": {
           "template": "TextFrame",
@@ -58,7 +58,7 @@
           "navright": "right"
         },
         "back": {
-          "template": "TitleFrame",
+          "template": "TextFrame",
           "title": "SNOWMAN",
           "text": "BACK BACK BACK",
           "navleft": "left",
@@ -78,28 +78,29 @@
       "frames": {
         "front": {
           "template": "TitleFrame",
-          "title": "LIGHT SHOWS IN THE PARK",
+          "title": "This is some new text!",
           "subtitle": "FRONT FRONT FRONT",
           "navleft": "left",
-          "navright": "right"
+          "navright": "right",
+          "text": ""
         },
         "right": {
           "template": "TextFrame",
-          "title": "LIGHT SHOWS IN THE BLEACHERS",
+          "title": "WINTER",
           "text": "RIGHT RIGHT RIGHT",
           "navleft": "left",
           "navright": "right"
         },
         "back": {
           "template": "TextFrame",
-          "title": "LIGHT SHOWS IN YOUR PARENTS GARAGE",
+          "title": "SNOWMAN",
           "text": "BACK BACK BACK",
           "navleft": "left",
           "navright": "right"
         },
         "left": {
           "template": "TextFrame",
-          "title": "LIGHT SHOWS IN YOUR BED",
+          "title": "WINTER",
           "text": "LEFT LEFT LEFT",
           "navleft": "left",
           "navright": "right"
@@ -107,5 +108,5 @@
       }
     }
   },
+  "currTemplate": "TextFrame"
   "publishingStatus": "Publish Project"
-}
